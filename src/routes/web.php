@@ -21,3 +21,11 @@ Livewire::setScriptRoute(function ($handle) {
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::view('/', 'pages.home')->name('home');
+
+Route::view('/portfolio', 'pages.portofolio')
+    ->name('portfolio');
+
+Route::view('/contact', 'pages.contact')
+    ->name('contact');
