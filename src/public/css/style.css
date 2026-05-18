@@ -257,6 +257,24 @@ a {
     border: 1px solid rgba(255,255,255,0.05);
 }
 
+.success-message {
+    width: fit-content;
+
+    padding: 14px 20px;
+
+    border-radius: 999px;
+
+    background: rgba(255,255,255,0.05);
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    color: #A1A1AA;
+
+    font-size: 14px;
+
+    transition: 0.3s ease;
+}
+
 /* RESPONSIVE */
 
 @media(max-width: 768px) {
@@ -307,6 +325,11 @@ a {
     color: white;
 }
 
+.button-outline-contact {
+    background: black;
+    color: white;
+}
+.button-outline-contact,
 .button-outline {
     border: 1px solid rgba(255,255,255,0.1);
     padding: 16px 30px;
@@ -423,9 +446,78 @@ a {
     font-size: 14px;
 }
 
+/* CONTACT FORM */
+
+.contact-form {
+    width: 100%;
+
+    max-width: 720px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 24px;
+
+    margin-top: 24px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+
+    background: #111111;
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    border-radius: 24px;
+
+    padding: 20px 24px;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-family: inherit;
+
+    outline: none;
+
+    transition: 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: rgba(255,255,255,0.2);
+}
+
+.form-group textarea {
+    resize: vertical;
+
+    min-height: 180px;
+}
+
+.success-message {
+    width: fit-content;
+
+    padding: 14px 20px;
+
+    border-radius: 999px;
+
+    background: rgba(255,255,255,0.05);
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    color: #A1A1AA;
+
+    font-size: 14px;
+}
+
 /* RESPONSIVE */
 
 @media(max-width: 768px) {
+
+    .contact-form {
+        max-width: 100%;
+    }
 
     .footer {
         padding: 24px 24px;
@@ -454,4 +546,4 @@ a {
         gap: 24px;
     }
 
-}
+    

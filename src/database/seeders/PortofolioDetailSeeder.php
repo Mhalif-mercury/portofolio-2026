@@ -119,10 +119,10 @@ class PortofolioDetailSeeder extends Seeder
                 ',
 
                 'erd_image' =>
-                    'portofolio-detail/ERD.png',
+                    'portofolio-details/erd.png',
 
                 'flowchart_image' =>
-                    'portofolio-detail/Usecase.png',
+                    'portofolio-details/usecase.png',
 
                 'conclusion' => '
 
@@ -230,10 +230,10 @@ class PortofolioDetailSeeder extends Seeder
                 ',
 
                 'erd_image' =>
-                    'portofolio-detail/ERD.png',
+                    'portofolio-details/erd.png',
 
                 'flowchart_image' =>
-                    'portofolio-detail/Usecase.png',
+                    'portofolio-details/usecase.png',
 
                 'conclusion' => '
 
@@ -343,10 +343,10 @@ class PortofolioDetailSeeder extends Seeder
                 ',
 
                 'erd_image' =>
-                    'portofolio-detail/ERD.png',
+                    'portofolio-details/erd.png',
 
                 'flowchart_image' =>
-                    'portofolio-detail/Usecase.png',
+                    'portofolio-details/usecase.png',
 
                 'conclusion' => '
 
