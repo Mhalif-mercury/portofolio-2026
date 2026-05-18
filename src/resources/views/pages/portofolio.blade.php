@@ -20,36 +20,51 @@
 
         <div class="portfolio-grid">
 
-            @foreach(range(1,8) as $item)
+            @foreach($portofolios as $portofolio)
 
                 <div class="portfolio-card">
 
-                    <div class="portfolio-image"></div>
+                    <img
+                        src="{{ asset('storage/' . $portofolio->thumbnail) }}"
+                        alt="{{ $portofolio->title }}"
+                        class="portfolio-image"
+                    >
 
                     <div class="portfolio-top">
 
                         <h3>
-                            Nokoribite
+                            {{ $portofolio->title }}
                         </h3>
 
                         <span>
-                            2026
+                            {{ $portofolio->year }}
                         </span>
 
                     </div>
 
                     <p>
-                        Marketplace website for near-expired food
-                        with dynamic discount pricing.
+                        {{ $portofolio->short_description }}
                     </p>
 
                     <div class="tags">
-
-                        <span>Laravel</span>
-                        <span>Filament</span>
-                        <span>Livewire</span>
-
+                        @foreach($portofolio->tech_stack as $stack)
+                            <span>
+                            {{ $stack }}
+                            </span>
+                        @endforeach
                     </div>
+
+                    @if($portofolio->github_url)
+
+                        <a href="{{ route('portofolio.show', $portofolio->slug) }}"
+                        target="_blank"
+                        class="portfolio-button">
+
+                            View Project
+
+                        </a>
+
+                    @endif
 
                 </div>
 

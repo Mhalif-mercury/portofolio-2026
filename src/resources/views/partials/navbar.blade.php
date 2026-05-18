@@ -3,7 +3,8 @@
     <div class="container navbar-wrapper">
 
         <a href="/" class="logo">
-            Mhalif
+            <img src="{{ asset('assets/images/Group 2.svg') }}"
+         alt="Logo">
         </a>
 
         <div class="nav-links">

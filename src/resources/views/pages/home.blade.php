@@ -39,7 +39,7 @@
                 </p>
 
                 <h2>
-                    Portfolio
+                    Portofolio
                 </h2>
             </div>
 
@@ -51,26 +51,40 @@
 
         <div class="portfolio-grid">
 
-            @foreach(range(1,4) as $item)
+            @foreach($featuredPortofolios as $portofolio)
 
+            
                 <div class="portfolio-card">
 
-                    <div class="portfolio-image"></div>
+                    <img src="{{ asset('storage/' . $portofolio->thumbnail) }}" class="portfolio-image" alt="{{ $portofolio->title }}">
 
                     <h3>
-                        Nokoribite Marketplace
+                        {{ $portofolio->title }}
                     </h3>
 
                     <p>
-                        Marketplace platform for near-expired food using Laravel,
-                        Filament v3, and Midtrans integration.
+                        {{ $portofolio->short_description }}
                     </p>
 
+                    @if($portofolio->github_url)
+    
+                        <a href="{{ route('portofolio.show', $portofolio->slug) }}"
+                        target="_blank"
+                        class="portfolio-button">
+    
+                            View Project
+    
+                        </a>
+    
+                    @endif
                 </div>
+
 
             @endforeach
 
         </div>
+
+        
 
     </div>
 

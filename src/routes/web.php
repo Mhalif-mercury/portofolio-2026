@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\PortofolioController;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
-use Illuminate\Support\Facades\Response;
 
 /* NOTE: Do Not Remove
 / Livewire asset handling if using sub folder in domain
@@ -18,14 +19,14 @@ Livewire::setScriptRoute(function ($handle) {
 /*
 / END
 */
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [PortofolioController::class, 'home'])
+    ->name('home');
 
-Route::view('/', 'pages.home')->name('home');
-
-Route::view('/portfolio', 'pages.portofolio')
+Route::get('/portofolio', [PortofolioController::class, 'portfolio'])
     ->name('portfolio');
 
 Route::view('/contact', 'pages.contact')
     ->name('contact');
+
+Route::get('/portofolio/{slug}', [PortofolioController::class, 'show'])
+    ->name('portofolio.show');

@@ -103,7 +103,21 @@ a {
     max-width: 900px;
 }
 
+.portfolio-image {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+
+    background: #1A1A1A;
+    border-radius: 20px;
+    margin-bottom: 28px;
+
+    object-fit: cover;
+    display: block;
+}
+
 .hero-label,
+.footer-label,
 .section-label {
     color: #71717A;
     font-size: 13px;
@@ -150,7 +164,148 @@ a {
     margin-bottom: 80px;
 }
 
+/* PORTOFOLIO DETAIL */
+
+.portofolio-detail-page {
+    padding: 180px 0 140px;
+}
+
+.detail-hero {
+    max-width: 900px;
+    margin-bottom: 80px;
+}
+
+.detail-hero h1 {
+    font-size: 84px;
+    line-height: 1;
+    font-weight: 600;
+    letter-spacing: -3px;
+    margin: 24px 0 32px;
+}
+
+.detail-description {
+    font-size: 18px;
+    color: #A1A1AA;
+    max-width: 700px;
+    margin-bottom: 40px;
+}
+
+.detail-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 40px;
+}
+
+.detail-tags span {
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 10px 16px;
+    border-radius: 999px;
+    font-size: 12px;
+}
+
+.detail-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.detail-thumbnail {
+    width: 100%;
+    border-radius: 32px;
+    margin-bottom: 120px;
+    object-fit: cover;
+    display: block;
+}
+
+.detail-content {
+    max-width: 900px;
+}
+
+.detail-section {
+    margin-bottom: 120px;
+}
+
+.detail-label {
+    color: #71717A;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 24px;
+}
+
+.detail-section h2 {
+    font-size: 48px;
+    line-height: 1.1;
+    margin-bottom: 32px;
+}
+
+.detail-text {
+    color: #A1A1AA;
+    font-size: 18px;
+    line-height: 1.9;
+}
+
+.detail-text p {
+    margin-bottom: 24px;
+}
+
+.detail-diagram {
+    width: 100%;
+    margin-top: 40px;
+    border-radius: 24px;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 768px) {
+
+    .portofolio-detail-page {
+        padding: 140px 0 100px;
+    }
+
+    .detail-hero h1 {
+        font-size: 48px;
+    }
+
+    .detail-section h2 {
+        font-size: 32px;
+    }
+
+    .detail-section {
+        margin-bottom: 80px;
+    }
+
+}
+
 /* BUTTON */
+
+.portfolio-button {
+    margin-top: 32px;
+
+    width: fit-content;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(255,255,255,0.1);
+    background: white;
+    color:black;
+
+    padding: 14px 24px;
+
+    border-radius: 999px;
+
+    font-size: 14px;
+
+    transition: 0.3s;
+}
+
+.portfolio-button:hover {
+    background: #111111;
+    color: white;
+}
 
 .button-outline {
     border: 1px solid rgba(255,255,255,0.1);

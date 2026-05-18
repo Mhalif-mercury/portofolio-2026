@@ -3,11 +3,11 @@
     <div class="container footer-wrapper">
 
         <p>
-            © {{ date('Y') }} Mhalif
+            © {{ date('Y') }}
         </p>
 
-        <p>
-            Crafted with Laravel
+        <p class ="footer-label">
+            CRAFTED BY MHALIF
         </p>
 
     </div>
