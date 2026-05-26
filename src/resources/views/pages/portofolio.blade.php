@@ -13,7 +13,8 @@
             </p>
 
             <h1>
-                Portfolio
+                Discover Projects <br>
+                Built for Real Problems
             </h1>
 
         </div>

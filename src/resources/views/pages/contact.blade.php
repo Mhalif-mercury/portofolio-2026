@@ -23,13 +23,6 @@
                 dashboard systems, and modern Laravel applications.
             </p>
 
-            <a href="mailto:your@email.com"
-               class="button-outline">
-
-                Contact Me
-
-            </a>
-
             @if(session('success'))
 
                 <div class="success-message"
@@ -85,7 +78,7 @@
                 </div>
 
                 <button type="submit"
-                        class="button-outline-contact">
+                        class="portfolio-button">
 
                     Send Message
 
