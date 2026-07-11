@@ -156,4 +156,9 @@ class TwoFactorChallenge extends SimplePage implements HasForms
     {
         //
     }
+
+    public static function getCluster(): ?string
+    {
+        return null;
+    }
 }

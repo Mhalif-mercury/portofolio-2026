@@ -167,13 +167,13 @@ class EditProfile extends BaseEditProfile
                                 if (Auth::user()->hasTwoFactorEnabled()) {
                                     return view('filament.pages.auth.two-factor-status', [
                                         'enabled' => true,
-                                        'setupUrl' => \App\Filament\Pages\Auth\TwoFactorSetup::getUrl(),
+                                        'setupUrl' => TwoFactorSetup::getUrl(),
                                     ]);
                                 }
 
                                 return view('filament.pages.auth.two-factor-status', [
                                     'enabled' => false,
-                                    'setupUrl' => \App\Filament\Pages\Auth\TwoFactorSetup::getUrl(),
+                                    'setupUrl' => TwoFactorSetup::getUrl(),
                                 ]);
                             }),
                     ]),
