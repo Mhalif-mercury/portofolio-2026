@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ContactMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\Validator;
 
 class ContactMessageController extends Controller
 {
@@ -15,23 +16,29 @@ class ContactMessageController extends Controller
         if (RateLimiter::tooManyAttempts('contact:' . $ip, 3)) {
             $seconds = RateLimiter::availableIn('contact:' . $ip);
 
-            return back()->withErrors([
+            return redirect(route('blog.index') . '#contact')->withErrors([
                 'rate' => 'Too many attempts. Please try again in ' . ceil($seconds / 60) . ' minutes.',
             ])->with('error', 'Too many attempts. Please try again later.');
         }
 
-        $validated = $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => ['required', 'max:255'],
             'email' => ['required', 'email'],
             'subject' => ['required', 'max:255'],
             'message' => ['required'],
         ]);
 
-        ContactMessage::create($validated);
+        if ($validator->fails()) {
+            return redirect(route('blog.index') . '#contact')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        ContactMessage::create($validator->validated());
 
         RateLimiter::hit('contact:' . $ip, 600);
 
-        return back()->with(
+        return redirect(route('blog.index') . '#contact')->with(
             'success',
             'Message sent successfully! I will get back to you as soon as possible.'
         );

@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\ContactMessageController;
 use App\Http\Controllers\PortofolioController;
-use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 
@@ -20,17 +19,12 @@ Livewire::setScriptRoute(function ($handle) {
 /*
 / END
 */
-Route::get('/', [PortofolioController::class, 'home'])
-    ->name('home');
 
-Route::get('/portofolio', [PortofolioController::class, 'portfolio'])
-    ->name('portfolio');
+Route::get('/', [PortofolioController::class, 'index'])
+    ->name('blog.index');
 
-Route::view('/contact', 'pages.contact')
-    ->name('contact');
-
-Route::get('/portofolio/{slug}', [PortofolioController::class, 'show'])
-    ->name('portofolio.show');
+Route::get('/blog/{slug}', [PortofolioController::class, 'show'])
+    ->name('blog.show');
 
 Route::post('/contact', [ContactMessageController::class, 'store'])
     ->name('contact.store');
