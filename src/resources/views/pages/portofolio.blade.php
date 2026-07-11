@@ -55,17 +55,12 @@
                         @endforeach
                     </div>
 
-                    @if($portofolio->github_url)
+                    <a href="{{ route('portofolio.show', $portofolio->slug) }}"
+                       class="portfolio-button">
 
-                        <a href="{{ route('portofolio.show', $portofolio->slug) }}"
-                        target="_blank"
-                        class="portfolio-button">
+                        View Project
 
-                            View Project
-
-                        </a>
-
-                    @endif
+                    </a>
 
                 </div>
 

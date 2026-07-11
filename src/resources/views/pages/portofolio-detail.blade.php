@@ -113,6 +113,27 @@
 
                 </div>
 
+                {{-- SYSTEM REQUIREMENTS --}}
+                @if($portofolio->detail->system_requirements)
+
+                    <div class="detail-section">
+
+                        <p class="detail-label">
+                            Requirements
+                        </p>
+
+                        <h2>
+                            Kebutuhan Sistem
+                        </h2>
+
+                        <div class="detail-text">
+                            {!! $portofolio->detail->system_requirements !!}
+                        </div>
+
+                    </div>
+
+                @endif
+
                 {{-- ARCHITECTURE --}}
                 <div class="detail-section">
 

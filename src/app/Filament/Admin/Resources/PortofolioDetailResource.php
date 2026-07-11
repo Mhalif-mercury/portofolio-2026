@@ -3,15 +3,12 @@
 namespace App\Filament\Admin\Resources;
 
 use App\Filament\Admin\Resources\PortofolioDetailResource\Pages;
-use App\Filament\Admin\Resources\PortofolioDetailResource\RelationManagers;
 use App\Models\PortofolioDetail;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class PortofolioDetailResource extends Resource
 {
@@ -33,6 +30,9 @@ class PortofolioDetailResource extends Resource
                 Forms\Components\RichEditor::make('problem_analysis')
                     ->required(),
 
+                Forms\Components\RichEditor::make('system_requirements')
+                    ->columnSpanFull(),
+
                 Forms\Components\RichEditor::make('architecture_explanation')
                     ->required(),
 
@@ -46,6 +46,9 @@ class PortofolioDetailResource extends Resource
                 Forms\Components\FileUpload::make('flowchart_image')
                     ->image()
                     ->directory('portfolio-details'),
+
+                Forms\Components\RichEditor::make('conclusion')
+                    ->columnSpanFull(),
             ]);
     }
 
@@ -53,7 +56,12 @@ class PortofolioDetailResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('portofolio.title')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable(),
             ])
             ->filters([
                 //

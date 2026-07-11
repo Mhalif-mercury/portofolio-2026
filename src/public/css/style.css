@@ -14,7 +14,7 @@
   --muted: oklch(0.44 0 0);
   --faint: oklch(0.55 0 0);
   --bg: oklch(1 0 0);
-  --surface: oklch(0.97 0.004 95);
+  --surface: #FAFAFA;
   --border: oklch(0.90 0 0);
   --border-hover: oklch(0.80 0 0);
   --accent: oklch(0.50 0.20 260);

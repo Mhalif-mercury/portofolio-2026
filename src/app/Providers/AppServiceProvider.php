@@ -12,6 +12,7 @@ use Filament\Support\Enums\VerticalAlignment;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\ValidationException;
+use PragmaRX\Google2FA\Google2FA;
 use Spatie\Activitylog\Models\Activity;
 
 class AppServiceProvider extends ServiceProvider
@@ -21,7 +22,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->singleton('pragmarx.google2fa', function () {
+            return new Google2FA;
+        });
     }
 
     /**

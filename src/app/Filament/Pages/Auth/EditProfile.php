@@ -158,6 +158,25 @@ class EditProfile extends BaseEditProfile
                                 ->modalWidth('2xl'),
                         ]),
                     ]),
+                Forms\Components\Section::make(__('Two-Factor Authentication'))
+                    ->description(__('Tingkatkan keamanan akun dengan two-factor authentication.'))
+                    ->schema([
+                        Forms\Components\Placeholder::make('two_factor_status')
+                            ->label(__('Status'))
+                            ->content(function () {
+                                if (Auth::user()->hasTwoFactorEnabled()) {
+                                    return view('filament.pages.auth.two-factor-status', [
+                                        'enabled' => true,
+                                        'setupUrl' => \App\Filament\Pages\Auth\TwoFactorSetup::getUrl(),
+                                    ]);
+                                }
+
+                                return view('filament.pages.auth.two-factor-status', [
+                                    'enabled' => false,
+                                    'setupUrl' => \App\Filament\Pages\Auth\TwoFactorSetup::getUrl(),
+                                ]);
+                            }),
+                    ]),
             ])->columns(6);
     }
 

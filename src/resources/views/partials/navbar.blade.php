@@ -9,7 +9,7 @@
 
         <div class="nav-links">
 
-            <a href="{{ route('home') }}">
+            <a href="{{ route('blog.index') }}">
                 Home
             </a>
 
@@ -17,7 +17,7 @@
                 Portfolio
             </a>
 
-            <a href="{{ route('contact') }}">
+            <a href="{{ route('blog.index') }}#contact">
                 Contact
             </a>
 

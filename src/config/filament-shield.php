@@ -71,6 +71,8 @@ return [
             'Dashboard',
             'EditProfilePage',
             'Themes',
+            'TwoFactorChallenge',
+            'TwoFactorSetup',
         ],
 
         'widgets' => [

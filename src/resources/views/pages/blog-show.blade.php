@@ -67,6 +67,13 @@
                     </section>
                 @endif
 
+                @if($post->detail->system_requirements)
+                    <section>
+                        <h2>System Requirements</h2>
+                        {!! $post->detail->system_requirements !!}
+                    </section>
+                @endif
+
                 @if($post->detail->architecture_explanation)
                     <section>
                         <h2>Architecture & Tech Stack</h2>

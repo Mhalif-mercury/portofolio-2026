@@ -2,6 +2,17 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Admin\Resources\UserResource;
+use App\Filament\Pages\Auth\EditProfile;
+use App\Filament\Pages\Auth\TwoFactorChallenge;
+use App\Filament\Pages\Auth\TwoFactorSetup;
+use App\Http\Middleware\RequireTwoFactorAuth;
+use Awcodes\LightSwitch\Enums\Alignment;
+use Awcodes\LightSwitch\LightSwitchPlugin;
+use Awcodes\Overlook\OverlookPlugin;
+use Awcodes\Overlook\Widgets\OverlookWidget;
+use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
+use DiogoGPinto\AuthUIEnhancer\AuthUIEnhancerPlugin;
 use Filament\Enums\ThemeMode;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -14,13 +25,17 @@ use Filament\Panel;
 use Filament\PanelProvider;
 use Filament\Support\Colors\Color;
 use Filament\Support\Enums\MaxWidth;
+use Hasnayeen\Themes\Http\Middleware\SetTheme;
+use Hasnayeen\Themes\ThemesPlugin;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 use Illuminate\Cookie\Middleware\EncryptCookies;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Joaopaulolndev\FilamentEditProfile\FilamentEditProfilePlugin;
 use Joaopaulolndev\FilamentEditProfile\Pages\EditProfilePage;
+use Njxqlus\FilamentProgressbar\FilamentProgressbarPlugin;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -29,11 +44,11 @@ class AdminPanelProvider extends PanelProvider
         return $panel
             ->default()
             ->id('admin')
-            ->path('admin')
+            ->path(env('FILAMENT_PATH', 'admin'))
             ->spa()
             ->login()
             ->passwordReset()
-            ->profile(\App\Filament\Pages\Auth\EditProfile::class, isSimple: false)
+            ->profile(EditProfile::class, isSimple: false)
             ->defaultThemeMode(ThemeMode::Light)
             ->font('Montserrat')
             ->colors([
@@ -45,11 +60,13 @@ class AdminPanelProvider extends PanelProvider
             ->discoverPages(in: app_path('Filament/Admin/Pages'), for: 'App\\Filament\\Admin\\Pages')
             ->pages([
                 Pages\Dashboard::class,
+                TwoFactorChallenge::class,
+                TwoFactorSetup::class,
             ])
             ->discoverClusters(in: app_path('Filament/Admin/Clusters'), for: 'App\\Filament\\Admin\\Clusters')
             ->discoverWidgets(in: app_path('Filament/Admin/Widgets'), for: 'App\\Filament\\Admin\\Widgets')
             ->widgets([
-                \Awcodes\Overlook\Widgets\OverlookWidget::class,
+                OverlookWidget::class,
             ])
             ->navigationGroups([
                 NavigationGroup::make()
@@ -60,12 +77,13 @@ class AdminPanelProvider extends PanelProvider
                     ->label(fn () => auth()->user()->name)
                     ->url(fn (): string => EditProfilePage::getUrl())
                     ->icon('heroicon-m-user-circle'),
-                // 'profile' => \Filament\Navigation\MenuItem::make()
-                //     ->label(fn () => auth()->user()->name)
-                //     ->icon('heroicon-m-user-circle'),
+                'two_factor' => MenuItem::make()
+                    ->label('Two-Factor Auth')
+                    ->url(fn (): string => TwoFactorSetup::getUrl())
+                    ->icon('heroicon-m-shield-check'),
             ])
             ->plugins([
-                \BezhanSalleh\FilamentShield\FilamentShieldPlugin::make()
+                FilamentShieldPlugin::make()
                     ->gridColumns([
                         'default' => 2,
                         'lg' => 3,
@@ -79,25 +97,25 @@ class AdminPanelProvider extends PanelProvider
                         'default' => 2,
                         'lg' => 3,
                     ]),
-                \Hasnayeen\Themes\ThemesPlugin::make(),
-                \Njxqlus\FilamentProgressbar\FilamentProgressbarPlugin::make()->color('#29b'),
-                \DiogoGPinto\AuthUIEnhancer\AuthUIEnhancerPlugin::make()
+                ThemesPlugin::make(),
+                FilamentProgressbarPlugin::make()->color('#29b'),
+                AuthUIEnhancerPlugin::make()
                     ->showEmptyPanelOnMobile(false)
                     ->formPanelPosition('right')
                     ->formPanelWidth('40%')
                     ->emptyPanelBackgroundImageOpacity('70%')
                     ->emptyPanelBackgroundImageUrl('https://picsum.photos/seed/picsum/1260/750.webp/?blur=1'),
-                \Awcodes\LightSwitch\LightSwitchPlugin::make()
-                    ->position(\Awcodes\LightSwitch\Enums\Alignment::BottomCenter)
+                LightSwitchPlugin::make()
+                    ->position(Alignment::BottomCenter)
                     ->enabledOn([
                         'auth.login',
                         'auth.password',
                     ]),
-                \Awcodes\Overlook\OverlookPlugin::make()
+                OverlookPlugin::make()
                     ->includes([
-                        \App\Filament\Admin\Resources\UserResource::class,
+                        UserResource::class,
                     ]),
-                \Joaopaulolndev\FilamentEditProfile\FilamentEditProfilePlugin::make()
+                FilamentEditProfilePlugin::make()
                     ->slug('my-profile')
                     ->setTitle('My Profile')
                     ->shouldRegisterNavigation(false)
@@ -120,10 +138,11 @@ class AdminPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
-                \Hasnayeen\Themes\Http\Middleware\SetTheme::class,
+                SetTheme::class,
             ])
             ->authMiddleware([
                 Authenticate::class,
+                RequireTwoFactorAuth::class,
             ]);
     }
 }
